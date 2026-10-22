@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ultimate Life Simulator: Beyond Reality</title>
+<style>
+:root{--bg:#0d0b14;--panel:#171321;--panel2:#211a30;--line:#392b50;--text:#f4efff;--muted:#b7abc9;--purple:#a88be8;--cyan:#83e5ed;--gold:#f2cf88;--red:#ff929c}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#251a3a 0,#0d0b14 52%);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
+button,input,select{font:inherit}button{cursor:pointer;border:1px solid var(--line);border-radius:12px;background:linear-gradient(135deg,#33254a,#211a30);color:var(--text);padding:11px 14px;transition:.15s}button:hover{border-color:var(--purple);transform:translateY(-1px)}button.primary{background:linear-gradient(135deg,#8665c5,#554083);border-color:#b39ae8;font-weight:700}button.secondary{background:#171321}button:disabled{opacity:.45;cursor:not-allowed;transform:none}
+header{padding:22px 16px 14px;text-align:center;border-bottom:1px solid #30243e;background:#0d0b14cc;position:sticky;top:0;z-index:5;backdrop-filter:blur(12px)}.eyebrow{font-size:.72rem;letter-spacing:.18em;color:var(--cyan);font-weight:800}.brand{font-size:clamp(1.35rem,4vw,2.2rem);font-weight:900;letter-spacing:.02em;margin:4px 0}.brand span{color:var(--purple)}.sub{color:var(--muted);font-size:.88rem}
+.wrap{max-width:1080px;margin:auto;padding:18px 14px 60px}.layout{display:grid;grid-template-columns:280px 1fr;gap:16px}.panel{background:linear-gradient(160deg,#1b1627ee,#120f1bee);border:1px solid var(--line);border-radius:18px;padding:17px;box-shadow:0 12px 40px #0003}.sidebar{align-self:start;position:sticky;top:135px}.avatar{width:82px;height:82px;border-radius:22px;background:linear-gradient(135deg,#554079,#1c3543);display:grid;place-items:center;font-size:2.5rem;border:1px solid #78639c;margin-bottom:10px}.h2{font-size:1.15rem;font-weight:850;margin:0 0 10px}.muted{color:var(--muted)}.small{font-size:.84rem}.divider{height:1px;background:var(--line);margin:14px 0}.stats{display:grid;gap:10px}.stathead{display:flex;justify-content:space-between;font-size:.86rem}.bar{height:7px;background:#352b43;border-radius:99px;overflow:hidden;margin-top:5px}.fill{height:100%;background:linear-gradient(90deg,#8060bd,#83e5ed);border-radius:99px}.nav{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:14px}.nav button{font-size:.82rem;padding:9px 6px}.main{display:grid;gap:15px;align-content:start}.hero{border-radius:16px;min-height:165px;padding:23px;background:linear-gradient(100deg,#1a1425eF,#20162bc9),radial-gradient(circle at 85% 20%,#7656a7,#15101f);border:1px solid #48365f;position:relative;overflow:hidden}.hero:after{content:"✦";position:absolute;right:22px;top:2px;font-size:8rem;color:#d7c2ff15}.hero h1{margin:0 0 7px;font-size:clamp(1.5rem,4vw,2.25rem);line-height:1.15;max-width:650px}.hero p{color:#d0c4e2;max-width:640px;margin:0}.row{display:flex;gap:9px;flex-wrap:wrap}.row>*{flex:1}.event{background:#211a30;border:1px solid #453357;border-radius:15px;padding:17px}.event h3{margin:0 0 8px}.choices{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px}.choices button{text-align:left;min-height:62px}.pill{display:inline-flex;align-items:center;gap:5px;background:#2b2239;border:1px solid #4b3a62;border-radius:999px;padding:4px 9px;font-size:.76rem;color:#dfd1f5}.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.kpi{background:#211a30;border:1px solid var(--line);border-radius:12px;padding:12px}.kpi b{font-size:1.15rem;display:block}.kpi span{font-size:.77rem;color:var(--muted)}.log{display:grid;gap:9px}.logitem{border-left:2px solid var(--purple);padding:5px 0 5px 12px;color:#d9d0e7}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field label{display:block;font-size:.82rem;color:var(--muted);margin-bottom:5px}.field input,.field select{width:100%;padding:11px;border-radius:10px;border:1px solid var(--line);background:#100d18;color:var(--text)}.hidden{display:none!important}.footer{text-align:center;color:#867991;font-size:.78rem;margin:22px 0 0}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.sidebar{position:static}.sidebar-inner{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center}.avatar{margin:0}.sidebar .stats,.sidebar .nav,.sidebar .divider{grid-column:1/-1}.choices{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr 1fr}.panel{padding:14px}.wrap{padding:13px 10px 40px}header{padding:16px 10px 12px}.formgrid{grid-template-columns:1fr}}
+</style>
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#171321">
+<link rel="icon" href="./icon-192.svg" type="image/svg+xml">
+<script>
+if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js").catch(() => {}));
+}
+</script>
+</head>
+<body>
+<header><div class="eyebrow">UM SIMULADOR DE VIDA INTERATIVO</div><div class="brand">ULTIMATE LIFE SIMULATOR <span>✦</span></div><div class="sub">BEYOND REALITY · edição jogável para navegador</div></header>
+<div class="wrap">
+  <div id="setup" class="panel">
+    <div class="hero"><span class="pill">NOVA PARTIDA</span><h1>Uma vida. Infinitas possibilidades.</h1><p>Construa sua história com decisões, família, carreira, patrimônio e encontros inesperados. O progresso fica salvo neste navegador.</p></div>
+    <h2 class="h2" style="margin-top:18px">Criar personagem</h2>
+    <div class="formgrid">
+      <div class="field"><label for="playerName">Nome do personagem</label><input id="playerName" value="Gabriel Henrique Almeida" maxlength="35"></div>
+      <div class="field"><label for="birthplace">Cidade de nascimento</label><select id="birthplace"><option>São Paulo, SP</option><option>Rio de Janeiro, RJ</option><option>Brasília, DF</option><option>Belo Horizonte, MG</option><option>Curitiba, PR</option><option>Vitória, ES</option><option>Salvador, BA</option></select></div>
+      <div class="field"><label for="origin">Origem familiar</label><select id="origin"><option value="rich" selected>Muito rica — família empresarial</option><option value="middle">Classe média</option><option value="humble">Humilde</option></select></div>
+      <div class="field"><label for="difficulty">Dificuldade</label><select id="difficulty"><option value="realistic" selected>Realista</option><option value="easy">Tranquila</option><option value="hard">Desafiadora</option></select></div>
+    </div>
+    <div class="row" style="margin-top:15px"><button class="primary" id="startBtn">Começar minha vida</button><button id="loadBtn">Carregar jogo salvo</button><button id="resetBtn">Apagar progresso</button></div>
+    <p class="muted small">A partida é uma versão inicial: alguns sistemas são simplificados e novos conteúdos podem ser adicionados ao projeto. O salvamento usa o armazenamento local deste navegador.</p>
+  </div>
+  <div id="game" class="layout hidden">
+    <aside class="panel sidebar"><div class="sidebar-inner">
+      <div class="avatar" id="avatar">👶</div><div><div class="eyebrow">SEU PERSONAGEM</div><h2 id="sideName" style="margin:2px 0">Gabriel</h2><div class="muted small" id="sideAge">0 anos · São Paulo</div><div style="margin-top:7px"><span class="pill" id="sideStatus">Bebê</span></div></div>
+      <div class="divider"></div><div class="stats" id="stats"></div>
+      <div class="divider"></div><div class="kpis"><div class="kpi"><b id="money">R$ 0</b><span>Dinheiro</span></div><div class="kpi"><b id="fame">0</b><span>Fama</span></div><div class="kpi"><b id="health">100</b><span>Saúde</span></div></div>
+      <div class="nav"><button data-page="home">🏠 Início</button><button data-page="family">👨‍👩‍👧 Família</button><button data-page="career">💼 Carreira</button><button data-page="social">✨ Encontros</button><button data-page="history">📜 Histórico</button><button id="saveBtn">💾 Salvar</button></div>
+    </div></aside>
+    <main class="main">
+      <section class="hero"><div class="eyebrow" id="dateLine">ANO 2026</div><h1 id="welcome">Sua história começa agora.</h1><p id="summary">Cada escolha pode mudar o seu futuro.</p></section>
+      <section class="panel" id="page-home">
+        <div class="row" style="align-items:center"><div><h2 class="h2">Seu próximo capítulo</h2><div class="muted small">Escolha uma ação. Envelhecer avança exatamente um ano.</div></div><span class="pill" id="agePill">0 anos</span></div>
+        <div class="event" id="eventBox" style="margin-top:13px"><h3>🌱 Um novo começo</h3><p>Você acaba de chegar ao mundo. Sua família está se adaptando à nova rotina.</p></div>
+        <div class="choices" id="choices"></div>
+        <div class="divider"></div><div class="row"><button class="primary" id="ageBtn">⏩ Envelhecer 1 ano</button><button id="menuBtn">📊 Ver status completo</button></div>
+      </section>
+      <section class="panel hidden" id="page-family"><h2 class="h2">👨‍👩‍👦 Família</h2><div id="familyList" class="log"></div></section>
+      <section class="panel hidden" id="page-career"><h2 class="h2">💼 Educação e carreira</h2><div id="careerContent"></div><div class="row" style="margin-top:12px"><button id="studyBtn">📚 Estudar / desenvolver habilidade</button><button id="workBtn">💼 Procurar trabalho (18+)</button></div></section>
+      <section class="panel hidden" id="page-social"><h2 class="h2">✨ Encontros especiais</h2><p class="muted">Conheça pessoas e descubra histórias. Os encontros são gerados pelo jogo e podem afetar sua reputação.</p><div class="row"><button id="vampireBtn">🦇 Investigar o sobrenatural</button><button id="celebrityBtn">🎬 Encontrar uma celebridade</button><button id="friendBtn">🤝 Conhecer alguém</button></div><div id="socialResult" style="margin-top:14px"></div></section>
+      <section class="panel hidden" id="page-history"><h2 class="h2">📜 Histórico da vida</h2><div id="historyList" class="log"></div></section>
+      <section class="panel"><h2 class="h2">Estado da partida</h2><div class="kpis"><div class="kpi"><b id="netWorth">R$ 0</b><span>Patrimônio familiar</span></div><div class="kpi"><b id="relCount">3</b><span>Familiares</span></div><div class="kpi"><b id="skill">50</b><span>Inteligência</span></div></div><p class="muted small" id="saveState">Salvamento local disponível.</p></section>
+    </main>
+  </div>
+  <div class="footer">Projeto independente e original · não afiliado a BitLife ou Celebrity Hunter.</div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const moneyFmt=n=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}).format(n);
+const clamp=(n,a=0,b=100)=>Math.max(a,Math.min(b,Math.round(n)));
+let s=null, currentPage='home', pending=null;
+const names=['Beatriz','Helena','Laura','Valentina','Isabela','Manuela','Alice','Cecília','Arthur','Miguel','Theo','Heitor','Davi','Bernardo','Lorenzo','Enzo','Caio','Samuel'];
+const surnames=['Almeida','Costa','Ferreira','Oliveira','Carvalho','Mendes','Barbosa','Ribeiro','Nogueira','Azevedo'];
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+function fresh(){
+ const origin=$('origin').value, city=$('birthplace').value, name=$('playerName').value.trim()||'Gabriel Almeida';
+ const wealth=origin==='rich'?85000000:origin==='middle'?420000:35000;
+ s={name,city,age:0,year:2026,birthYear:2026,difficulty:$('difficulty').value,health:100,happiness:85,intelligence:50,charisma:50,discipline:50,money:0,fame:0,netWorth:wealth,origin,job:null,education:'Não iniciada',relationship:'Solteiro',family:[
+ {name:'Rafael Almeida Costa',role:'Pai',age:38,job:'Empresário de logística',personality:'determinado, estratégico e protetor',alive:true,relation:78},
+ {name:'Mariana Ferreira Almeida',role:'Mãe',age:35,job:'Empresária e diretora financeira',personality:'inteligente, paciente e pragmática',alive:true,relation:86},
+ {name:'Lucas Almeida Costa',role:'Irmão mais velho',age:2,job:'Criança',personality:'curioso, sociável e ativo',alive:true,relation:70}
+ ],history:[],event:null,flags:{},skills:[],born:true};
+ if(origin==='rich'){s.family[0].job='Diretor de um grupo de logística';s.family[1].job='Diretora financeira e investidora'}
+ addLog(`Nascimento de ${name} em ${city}. Família e estado inicial gerados.`); showEvent('🌱 Um novo começo',`Você nasceu em ${city}, em uma família ${origin==='rich'?'empresarial muito rica':origin==='middle'?'de classe média':'humilde'}. Seus pais, Rafael e Mariana, dão as boas-vindas ao novo integrante da família.`,[{label:'👶 Descansar com a família',desc:'Um começo tranquilo',fn:()=>{s.happiness=clamp(s.happiness+2);resolve('Você passa um momento tranquilo com sua família.');}},{label:'💗 Registrar o momento',desc:'Uma lembrança para o futuro',fn:()=>{s.flags.firstMemory=true;resolve('Seus pais guardam uma lembrança especial do nascimento.');}}]);
+ render(); $('setup').classList.add('hidden');$('game').classList.remove('hidden'); save(false);
+}
+function addLog(t){if(!s)return;s.history.unshift({year:s.year,age:s.age,text:t});s.history=s.history.slice(0,80)}
+function showEvent(title,body,choices){s.event={title,body,choices};renderEvent()}
+function renderEvent(){if(!s||!s.event)return;$('eventBox').innerHTML=`<h3>${esc(s.event.title)}</h3><p>${esc(s.event.body)}</p>`;$('choices').innerHTML='';s.event.choices.forEach((c,i)=>{const b=document.createElement('button');b.innerHTML=`<strong>${i+1}. ${esc(c.label)}</strong><div class="muted small">${esc(c.desc||'')}</div>`;b.onclick=()=>c.fn();$('choices').appendChild(b)})}
+function esc(t){return String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function resolve(msg){addLog(msg);s.event=null;render();showEvent('📖 Resultado',msg,[{label:'Continuar',desc:'Voltar às atividades',fn:()=>nextEvent()}]);}
+function nextEvent(){
+ const events=[
+ {t:'🎒 Uma nova oportunidade',b:'Surge uma oportunidade de aprender algo novo e conhecer pessoas.',c:[['Aceitar o desafio','Inteligência +3',()=>{s.intelligence=clamp(s.intelligence+3);s.discipline=clamp(s.discipline+2)}],['Priorizar descanso','Felicidade +3',()=>{s.happiness=clamp(s.happiness+3)}]]},
+ {t:'🏡 Um momento em família',b:'Sua família organiza um momento para passar tempo junta.',c:[['Participar ativamente','Relações familiares +',()=>{s.family.forEach(x=>x.relation=clamp(x.relation+2));s.happiness=clamp(s.happiness+2)}],['Ficar na sua','Carisma não muda',()=>{s.happiness=clamp(s.happiness+1)}]]},
+ {t:'🌦️ Um pequeno contratempo',b:'Um plano não sai exatamente como esperado. Como você reage?',c:[['Adaptar-se','Disciplina +2',()=>{s.discipline=clamp(s.discipline+2)}],['Pedir ajuda','Felicidade +1',()=>{s.happiness=clamp(s.happiness+1);s.family[1].relation=clamp(s.family[1].relation+1)}]]}
+ ];
+ const e=pick(events);showEvent(e.t,e.b,e.c.map(x=>({label:x[0],desc:x[1],fn:()=>{x[2]();resolve(`${x[0]}: ${x[1]}.`);}})).concat([{label:'Escolher outra atividade',desc:'Sem efeito direto',fn:()=>{resolve('Você decidiu não se envolver neste acontecimento.')}}]).slice(0,3));
+}
+function ageUp(){
+ if(!s)return;
+ if(s.age>=110){showEvent('🏁 Fim de uma longa jornada','Seu personagem chegou a uma idade extraordinária. Você ainda pode rever o histórico ou continuar explorando o estado da partida.',[{label:'Ver histórico',desc:'Relembrar a vida',fn:()=>go('history')}]);return}
+ s.age++;s.year++;s.family.forEach(p=>{if(p.alive)p.age++});
+ s.happiness=clamp(s.happiness+(Math.random()<.55?1:-1));s.health=clamp(s.health-(s.age>70?2:s.age>50?1:0)+(Math.random()<.25?1:0));
+ if(s.age===1){s.education='Primeira infância';s.avatar='👶'} else if(s.age<4){s.education='Primeira infância';} else if(s.age<6){s.education='Educação infantil'} else if(s.age<18){s.education='Ensino básico'} else if(s.age<23&&s.education!=='Ensino superior'){s.education='Ensino médio / início da vida adulta'} else if(s.age>=23&&s.education!=='Ensino superior'){s.education='Formação a definir'}
+ if(s.age===18){s.money+=5000;addLog('Você atingiu a maioridade e recebeu R$ 5.000 como reserva inicial simulada.')}
+ if(s.age>=18&&s.job){s.money+=s.job.salary;s.netWorth+=s.job.salary;addLog(`Renda anual de ${moneyFmt(s.job.salary)} recebida como ${s.job.title}.`)}
+ const evt=pick([
+ ['🎂 Mais um ano de vida',`Você completa ${s.age} anos. Sua família e suas circunstâncias evoluem com o tempo.`,[['Celebrar com a família','Relações +2',()=>{s.family.forEach(p=>p.relation=clamp(p.relation+2));s.happiness=clamp(s.happiness+3)}],['Fazer algo por si','Disciplina +2',()=>{s.discipline=clamp(s.discipline+2)}]]],
+ ['🌟 Uma chance inesperada','Uma nova experiência aparece no seu caminho.',[['Aproveitar a oportunidade','Carisma +2',()=>{s.charisma=clamp(s.charisma+2);s.fame+=1}],['Observar primeiro','Inteligência +2',()=>{s.intelligence=clamp(s.intelligence+2)}]]],
+ ['🏠 Notícias da família','Uma conversa familiar traz novidades e planos para o futuro.',[['Aproximar-se','Felicidade +2',()=>{s.happiness=clamp(s.happiness+2);s.family[0].relation=clamp(s.family[0].relation+2)}],['Focar nos próprios objetivos','Disciplina +2',()=>{s.discipline=clamp(s.discipline+2)}]]]
+ ]);
+ showEvent(evt[0],evt[1],evt[2].map(x=>({label:x[0],desc:x[1],fn:()=>{x[2]();resolve(`${x[0]} aos ${s.age} anos. ${x[1]}.`)}})));
+ addLog(`Você completou ${s.age} anos.`);render();save(false);
+}
+function render(){
+ if(!s)return;
+ $('sideName').textContent=s.name;$('sideAge').textContent=`${s.age} anos · ${s.city}`;$('sideStatus').textContent=s.age<3?'Bebê':s.age<12?'Criança':s.age<18?'Adolescente':s.age<60?'Adulto':'Idoso';
+ $('avatar').textContent=s.age<3?'👶':s.age<13?'🧒':s.age<20?'🧑':s.age<60?'🧑‍💼':'🧓';
+ $('dateLine').textContent=`ANO ${s.year} · ${s.age} ANOS`; $('welcome').textContent=s.age===0?'Sua história começa agora.':`O capítulo dos ${s.age} anos`; $('summary').textContent=`${s.name} · ${s.education} · ${s.city}`;
+ $('agePill').textContent=`${s.age} anos`;$('money').textContent=moneyFmt(s.money);$('fame').textContent=s.fame;$('health').textContent=s.health;$('netWorth').textContent=moneyFmt(s.netWorth);$('relCount').textContent=s.family.length;$('skill').textContent=s.intelligence;
+ $('stats').innerHTML=[['Saúde',s.health],['Felicidade',s.happiness],['Inteligência',s.intelligence],['Carisma',s.charisma],['Disciplina',s.discipline]].map(([n,v])=>`<div><div class="stathead"><span>${n}</span><b>${v}</b></div><div class="bar"><div class="fill" style="width:${v}%"></div></div></div>`).join('');
+ $('familyList').innerHTML=s.family.map(p=>`<div class="logitem"><b>${esc(p.name)}</b> · ${esc(p.role)}<br><span class="muted small">${p.age} anos · ${esc(p.job)}<br>Personalidade: ${esc(p.personality)}<br>Relação: ${p.relation}/100</span></div>`).join('');
+ $('careerContent').innerHTML=`<div class="event"><h3>📚 Situação atual</h3><p>Idade: ${s.age} anos<br>Escolaridade: ${esc(s.education)}<br>Profissão: ${s.job?esc(s.job.title):'Ainda não possui emprego'}<br>Dinheiro pessoal: ${moneyFmt(s.money)}</p></div>`;
+ $('historyList').innerHTML=s.history.length?s.history.map(h=>`<div class="logitem"><b>${h.year} · ${h.age} anos</b><br>${esc(h.text)}</div>`).join(''):'<p class="muted">Nenhum acontecimento registrado.</p>';
+ renderEvent();if(s.event===null){$('eventBox').innerHTML='<h3>🌿 O que deseja fazer?</h3><p>Escolha uma atividade ou avance um ano para continuar a sua vida.</p>';$('choices').innerHTML=''}
+}
+function go(page){currentPage=page;document.querySelectorAll('[id^="page-"]').forEach(el=>el.classList.add('hidden'));if(page==='home')$('page-home').classList.remove('hidden');else $('page-'+page).classList.remove('hidden')}
+function special(type){
+ if(!s)return;
+ if(type==='vampire'){
+ const n=pick(['Valentina Montenegro','Dante Vasconcelos','Lívia Nocturne','Adrian Ferraz']);const age=pick([87,124,203,318,46]);const clan=pick(['Círculo da Lua Velada','Casa Rubra','Ordem do Véu','Linhagem do Eclipse']);
+ $('socialResult').innerHTML=`<div class="event"><span class="pill">ENCONTRO SOBRENATURAL</span><h3>🦇 ${n}</h3><p><b>Idade aparente:</b> ${pick([24,29,33,37])} · <b>Idade real:</b> ${age} anos<br><b>Linhagem:</b> ${clan}<br><b>Hierarquia:</b> ${age>150?'Nobre antigo':'Vampiro experiente'}<br><b>Personalidade:</b> reservado, observador e cauteloso.<br><b>Intenção aparente:</b> compreender por que você se interessa pelo mundo oculto.</p><p class="muted small">Este é um encontro ficcional. Transformação não ocorre automaticamente.</p><div class="row"><button id="askV">Perguntar sobre o mundo oculto</button><button id="leaveV">Agradecer e sair</button></div><div id="vReply"></div></div>`;
+ $('askV').onclick=()=>{$('vReply').textContent=`${n} conta uma história sobre ${clan} e recomenda que você descubra mais antes de confiar em qualquer linhagem.`;s.intelligence=clamp(s.intelligence+1);addLog(`Conheceu ${n}, um vampiro fictício da ${clan}.`);render()};
+ $('leaveV').onclick=()=>{$('socialResult').innerHTML='<p class="muted">Você encerrou o encontro sem compromisso.</p>';addLog(`Encontro sobrenatural com ${n} encerrado.`);render()};
+ }else if(type==='celebrity'){
+ const n=pick(['Aurora Valença','Theo Montenegro','Luna Prado','Caio Ventura']);const job=pick(['cantora pop','ator de cinema','criadora de conteúdo','piloto e personalidade pública']);
+ $('socialResult').innerHTML=`<div class="event"><span class="pill">CELEBRIDADE FICTÍCIA</span><h3>🎬 ${n}</h3><p><b>Profissão:</b> ${job}<br><b>Fama:</b> ${pick(['em ascensão','nacional','internacional'])}<br><b>Personalidade:</b> sociável, ambicioso e cuidadoso com a própria reputação.</p><p>Você tem a chance de iniciar uma conversa apropriada ao contexto.</p><div class="row"><button id="talkC">Conversar com educação</button><button id="leaveC">Seguir seu caminho</button></div><div id="cReply"></div></div>`;
+ $('talkC').onclick=()=>{$('cReply').textContent=`${n} agradece a conversa. Você ganha experiência social, mas uma amizade dependerá de encontros futuros.`;s.charisma=clamp(s.charisma+2);s.fame+=1;addLog(`Encontrou a celebridade fictícia ${n} (${job}).`);render()};
+ $('leaveC').onclick=()=>{$('socialResult').innerHTML='<p class="muted">Você decidiu não iniciar uma conversa.</p>'};
+ }else{
+ const n=pick(names)+' '+pick(surnames);$('socialResult').innerHTML=`<div class="event"><h3>🤝 Você conheceu ${n}</h3><p>Uma pessoa nova cruza seu caminho. Uma conversa amigável pode ser o começo de uma amizade.</p><button id="makeFriend">Iniciar conversa</button><div id="friendReply"></div></div>`;
+ $('makeFriend').onclick=()=>{s.charisma=clamp(s.charisma+2);s.happiness=clamp(s.happiness+1);$('friendReply').textContent=`A conversa correu bem. ${n} agora faz parte das suas lembranças, mas a amizade ainda precisa se desenvolver.`;addLog(`Conheceu ${n}.`);render()};
+ }
+}
+$('startBtn').onclick=fresh;
+$('loadBtn').onclick=()=>{try{const v=localStorage.getItem('ulsbr_save');if(!v){alert('Nenhum jogo salvo encontrado neste navegador.');return}s=JSON.parse(v);$('setup').classList.add('hidden');$('game').classList.remove('hidden');render();go('home');$('saveState').textContent='Jogo carregado do armazenamento local.'}catch(e){alert('Não foi possível carregar o jogo salvo.')}};
+$('resetBtn').onclick=()=>{if(confirm('Apagar o progresso salvo neste navegador?')){localStorage.removeItem('ulsbr_save');alert('Progresso local apagado.')}};
+$('ageBtn').onclick=ageUp;
+$('menuBtn').onclick=()=>{alert(`${s.name}\nIdade: ${s.age}\nAno: ${s.year}\nSaúde: ${s.health}\nFelicidade: ${s.happiness}\nInteligência: ${s.intelligence}\nCarisma: ${s.charisma}\nDisciplina: ${s.discipline}\nDinheiro: ${moneyFmt(s.money)}\nPatrimônio familiar: ${moneyFmt(s.netWorth)}`)};
+$('saveBtn').onclick=()=>save(true);
+function save(notify=true){if(!s)return;try{localStorage.setItem('ulsbr_save',JSON.stringify(s));$('saveState').textContent='Salvo neste navegador · '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});if(notify)alert('Partida salva neste navegador.')}catch(e){$('saveState').textContent='O navegador não permitiu salvar localmente.'}}
+document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>go(b.dataset.page));
+$('studyBtn').onclick=()=>{if(!s)return;s.intelligence=clamp(s.intelligence+3);s.discipline=clamp(s.discipline+2);if(s.age>=6)s.education=s.age>=18?'Estudos complementares':'Ensino básico';addLog('Você dedicou tempo aos estudos.');render();showEvent('📚 Sessão de estudos','Você se dedicou a aprender e fortaleceu suas habilidades.',[{label:'Continuar',desc:'Voltar ao jogo',fn:()=>{s.event=null;renderEvent()}}]);save(false)};
+$('workBtn').onclick=()=>{if(s.age<18){alert('Você precisa ter 18 anos para procurar trabalho neste protótipo.');return}if(s.job){alert('Você já possui uma profissão nesta versão.');return}const jobs=[{title:'Assistente administrativo',salary:36000},{title:'Analista júnior',salary:52000},{title:'Criador de conteúdo iniciante',salary:18000}];s.job=pick(jobs);addLog(`Conseguiu trabalho como ${s.job.title}. Renda anual simulada: ${moneyFmt(s.job.salary)}.`);render();save(false)};
+$('vampireBtn').onclick=()=>special('vampire');$('celebrityBtn').onclick=()=>special('celebrity');$('friendBtn').onclick=()=>special('friend');
+</script>
+</body></html>

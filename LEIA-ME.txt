@@ -1,0 +1,16 @@
+ULTIMATE LIFE SIMULATOR — PACOTE PWA OFFLINE
+
+O que contém:
+- index.html: jogo
+- manifest.webmanifest: identidade para instalação
+- service-worker.js: cache offline
+- ícones SVG
+
+IMPORTANTE:
+Este pacote NÃO é um APK. Para instalar como aplicativo PWA no Android, publique estes arquivos em um endereço HTTPS (por exemplo, um serviço de hospedagem estática). Abra o endereço no Chrome com internet uma vez, espere carregar completamente e escolha “Instalar app” ou “Adicionar à tela inicial”. Depois de instalado e carregado, o jogo pode abrir offline.
+
+O Chrome não permite registrar service workers diretamente a partir de um arquivo file://. Por isso, abrir index.html direto do gerenciador de arquivos não habilita a instalação PWA/offline.
+
+O progresso do jogo usa armazenamento local do navegador/dispositivo. Não limpe os dados do Chrome se quiser preservar o salvamento.
+
+Para um APK independente, é necessário empacotar o jogo em um projeto Android e compilar/assinar o APK em uma ferramenta de desenvolvimento Android. Este ZIP sozinho não é um APK.
