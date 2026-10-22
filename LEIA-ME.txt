@@ -1,16 +1,36 @@
-ULTIMATE LIFE SIMULATOR — PACOTE PWA OFFLINE
+ULTIMATE LIFE SIMULATOR — ATUALIZAÇÃO NARRATIVA v2
 
-O que contém:
-- index.html: jogo
-- manifest.webmanifest: identidade para instalação
-- service-worker.js: cache offline
-- ícones SVG
+ARQUIVOS DO PACOTE
+- index.html: jogo atualizado, interface adaptável, eventos narrativos, relações, carreira, memória e configurações.
+- service-worker.js: cache offline com versão atualizada.
+- manifest.webmanifest: identidade PWA usada na instalação.
+- icon-192.svg e icon-512.svg: ícones do aplicativo.
 
-IMPORTANTE:
-Este pacote NÃO é um APK. Para instalar como aplicativo PWA no Android, publique estes arquivos em um endereço HTTPS (por exemplo, um serviço de hospedagem estática). Abra o endereço no Chrome com internet uma vez, espere carregar completamente e escolha “Instalar app” ou “Adicionar à tela inicial”. Depois de instalado e carregado, o jogo pode abrir offline.
+NOVIDADES PRINCIPAIS
+- 42 modelos de acontecimentos com faixas etárias, escolhas e efeitos diferentes.
+- Seleção de eventos que evita repetir os 12 acontecimentos mais recentes quando há alternativas disponíveis.
+- Variações de nomes, interesses, contexto narrativo e detalhes ambientais para diversificar as cenas.
+- Consequências registradas no histórico, além de algumas cenas de retorno condicionadas a decisões anteriores.
+- Painel de configurações com volume geral, efeitos, ambiência opcional, sons ligados/desligados, texto maior, animações reduzidas e confirmação ao avançar idade.
+- Efeitos sonoros sintetizados localmente pelo navegador; não precisam baixar arquivos de áudio.
+- Ações de família, vocação, carreira, encontros, mistérios e exportação do resumo de vida.
+- Migração tolerante de salvamentos anteriores do jogo.
 
-O Chrome não permite registrar service workers diretamente a partir de um arquivo file://. Por isso, abrir index.html direto do gerenciador de arquivos não habilita a instalação PWA/offline.
+COMO ATUALIZAR NO GITHUB
+1. Faça uma cópia dos arquivos atuais antes de substituir qualquer coisa.
+2. No repositório ultimate-life-simulator, substitua index.html pelo novo index.html.
+3. Substitua service-worker.js pelo novo service-worker.js.
+4. Mantenha manifest.webmanifest e os dois ícones SVG existentes; eles já são compatíveis com o pacote.
+5. Faça Commit changes.
+6. Abra o site com internet e aguarde a atualização do service worker. Se continuar aparecendo a versão antiga, feche o app instalado, abra o endereço no Chrome com internet e recarregue. A atualização de cache pode levar um pouco.
 
-O progresso do jogo usa armazenamento local do navegador/dispositivo. Não limpe os dados do Chrome se quiser preservar o salvamento.
+SALVAMENTO
+O jogo salva no armazenamento local do navegador. O pacote tenta carregar o salvamento anterior, mas mantenha uma cópia dos arquivos originais e não limpe os dados do Chrome antes de confirmar que sua vida continua disponível.
 
-Para um APK independente, é necessário empacotar o jogo em um projeto Android e compilar/assinar o APK em uma ferramenta de desenvolvimento Android. Este ZIP sozinho não é um APK.
+OFFLINE
+O service worker armazena o app shell para abrir sem conexão após a primeira visita online bem-sucedida. O funcionamento offline precisa ser confirmado no próprio aparelho depois de a atualização ser instalada e carregada uma vez com internet.
+
+LIMITES HONESTOS DESTA VERSÃO
+O pacote tem 42 modelos narrativos com variações e escolhas; não são milhares de cenas escritas individualmente. As opções de ambiência usam áudio sintetizado pelo navegador, não trilha musical gravada. A versão deve ser testada no Chrome Android após publicação, especialmente o salvamento e a atualização offline.
+
+Projeto independente e original. Não afiliado a BitLife ou Celebrity Hunter.
